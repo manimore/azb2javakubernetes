@@ -5,7 +5,9 @@
 
 trigger:
 - master
-
+#variables
+variables:
+  tag: '$(Build.BuildId)'
 pool:
   vmImage: ubuntu-latest
 
@@ -22,11 +24,18 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerhubconnect'
+    repository: 'dockerdrk/ab2springjava'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: '**/*.jar'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    SourceFolder: '$(System.DefaultWorkingDirectory)/kube-manifests'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    OverWrite: true
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
