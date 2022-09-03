@@ -9,7 +9,7 @@ trigger:
 variables:
   tag: '$(Build.BuildId)'
 pool:
-  vmImage: ubuntu-latest
+ name: Default
 
 steps:
 - script: echo Hello, world!
