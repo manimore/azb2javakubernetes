@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app1-nginx
-          image: dockerdrk/ab2springjava
+          image: dockerdrk/azurebacth2springjava
           ports:
             - containerPort: 80
 ---
