@@ -28,7 +28,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'dockerhubconnect'
-    repository: 'dockerdrk/ab2springjava'
+    repository: 'dockerdrk/azurebacth2springjava'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
 - task: CopyFiles@2
